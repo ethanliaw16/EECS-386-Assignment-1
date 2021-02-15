@@ -35,7 +35,7 @@ public class ServiceActivity extends AppCompatActivity {
                     String newText = "Message from service: " + timeService.getTime();
                     timestampText.setText(newText);
                 }
-                Toast messageReceivedToast = Toast.makeText(serviceActivityContext, "Recieved New Message", Toast.LENGTH_SHORT);
+                Toast messageReceivedToast = Toast.makeText(getBaseContext(), "Recieved New Message", Toast.LENGTH_SHORT);
                 messageReceivedToast.show();
             }
 
@@ -51,7 +51,7 @@ public class ServiceActivity extends AppCompatActivity {
                 Intent intent = new Intent(ServiceActivity.this,
                         TimeService.class);
                 stopService(intent);
-                Toast stopServiceToast = Toast.makeText(serviceActivityContext, "Service Stopped", Toast.LENGTH_SHORT);
+                Toast stopServiceToast = Toast.makeText(getBaseContext(), "Service Stopped", Toast.LENGTH_SHORT);
                 stopServiceToast.show();
             }
         });
@@ -72,7 +72,7 @@ public class ServiceActivity extends AppCompatActivity {
                 else{
                     toastMessage = "Service is Already Running";
                 }
-                startServiceToast = Toast.makeText(serviceActivityContext, toastMessage, Toast.LENGTH_SHORT);
+                startServiceToast = Toast.makeText(getBaseContext(), toastMessage, Toast.LENGTH_SHORT);
                 startServiceToast.show();
             }
         });
