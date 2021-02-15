@@ -49,7 +49,7 @@ public class TimeService extends Service {
         StringBuilder time = new StringBuilder();
         int hours = calendar.get(Calendar.HOUR_OF_DAY);
         int minutes = calendar.get(Calendar.MINUTE);
-        String formattedTime = String.format("%d:%02", hours, minutes);
+        String formattedTime = String.format("%d:%02d", hours, minutes);
         time.append(formattedTime);
         return time.toString();
     }
