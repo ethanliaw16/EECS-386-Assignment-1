@@ -47,9 +47,10 @@ public class TimeService extends Service {
     public String getTime(){
         Calendar calendar = Calendar.getInstance();
         StringBuilder time = new StringBuilder();
-        time.append(Integer.toString(calendar.get(Calendar.HOUR_OF_DAY)));
-        time.append(":");
-        time.append(Integer.toString(calendar.get(Calendar.MINUTE)));
+        int hours = calendar.get(Calendar.HOUR_OF_DAY);
+        int minutes = calendar.get(Calendar.MINUTE);
+        String formattedTime = String.format("%d:%02", hours, minutes);
+        time.append(formattedTime);
         return time.toString();
     }
 

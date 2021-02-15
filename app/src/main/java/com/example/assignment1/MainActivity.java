@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         TextView mainText = findViewById(R.id.maintext);
-        mainText.setText("The time is currently " + new Date());
+        mainText.setText("App was opened at " + new Date());
         Button goToServiceButton = (Button) findViewById(R.id.servicebutton);
         goToServiceButton.setOnClickListener(new View.OnClickListener() {
             @Override
