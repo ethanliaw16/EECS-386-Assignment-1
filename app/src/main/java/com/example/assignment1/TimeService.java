@@ -19,6 +19,7 @@ public class TimeService extends Service {
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
+        Log.v(LOG_TAG, "in bind");
         return timeBinder;
     }
 
