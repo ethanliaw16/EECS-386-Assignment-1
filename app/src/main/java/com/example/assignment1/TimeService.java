@@ -52,7 +52,7 @@ public class TimeService extends Service {
         return time.toString();
     }
 
-    private class TimeBinder extends Binder {
+    public class TimeBinder extends Binder {
         TimeService getService(){
             return TimeService.this;
         }
