@@ -31,7 +31,8 @@ public class ServiceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (timeServiceBound) {
-                    timestampText.setText("Time from Service: " + timeService.getTime());
+                    String newText = "Message from service: " + timeService.getTime();
+                    timestampText.setText(newText);
                 }
                 Toast messageReceivedToast = Toast.makeText(getApplicationContext(), "Recieved New Message", Toast.LENGTH_SHORT);
                 messageReceivedToast.show();
