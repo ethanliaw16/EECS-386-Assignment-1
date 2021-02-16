@@ -21,7 +21,16 @@
         android:id="@+id/contactlistview"
         android:layout_width="300dp"
         android:layout_height="500dp"
-        tools:layout_editor_absoluteX="55dp"
-        tools:layout_editor_absoluteY="172dp" />
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contentprovidertitle">
+
+        <TextView
+            android:id="@+id/contactentry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+    </ListView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

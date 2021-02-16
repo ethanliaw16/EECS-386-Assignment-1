@@ -29,9 +29,12 @@ public class MainActivity extends AppCompatActivity {
         mainText.setText("App was opened at " + new Date());
         Button goToServiceButton = (Button) findViewById(R.id.servicebutton);
         Button broadcastButton = (Button) findViewById(R.id.broadcastbutton);
+        Button contentProviderButton = (Button) findViewById(R.id.contentproviderbutton);
+
         MyReceiver receiver = new MyReceiver();
         //Intent intent = new Intent("com.assignment1.MY_INTENT");
         registerReceiver(receiver, new IntentFilter("com.assignment1.MY_INTENT"));
+
         goToServiceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,6 +47,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, BroadcastActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        contentProviderButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ContentProviderActivity.class);
                 startActivity(intent);
             }
         });
