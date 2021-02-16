@@ -21,7 +21,7 @@
 
         <receiver android:name=".TimeReceiver">
             <intent-filter>
-                <action android:name="com.example.assignment1.TIME_INTENT"></action>
+                <action android:name="com.assignment1.TIME_INTENT"></action>
             </intent-filter>
         </receiver>
 

@@ -24,7 +24,7 @@ public class BroadcastActivity extends AppCompatActivity {
 
     public void broadcastIntent(View view) {
         Intent intent = new Intent();
-        intent.setAction("com.example.assignment1.TIME_INTENT");
+        intent.setAction("com.assignment1.TIME_INTENT");
         sendBroadcast(intent);
     }
 }
