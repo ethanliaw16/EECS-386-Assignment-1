@@ -11,26 +11,88 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="50dp"
         android:text="Contacts"
-        android:textSize="30sp"
+        android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/contactlistview"
         android:layout_width="300dp"
-        android:layout_height="500dp"
+        android:layout_height="300dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="180dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contentprovidertitle">
+        app:layout_constraintTop_toBottomOf="@+id/contentprovidertitle" />
 
-        <TextView
-            android:id="@+id/contactentry"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
-    </ListView>
+    <Button
+        android:id="@+id/refreshbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="refresh"
+        android:text="Refresh"
+        app:backgroundTint="@android:color/darker_gray"
+        app:layout_constraintBottom_toBottomOf="@+id/contentprovidertitle"
+        app:layout_constraintStart_toStartOf="@+id/addcontactbutton" />
+
+    <TextView
+        android:id="@+id/addtextheader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="30dp"
+        android:text="Add New Contact"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contentprovidertitle" />
+
+    <EditText
+        android:id="@+id/namefield"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addtextheader" />
+
+    <EditText
+        android:id="@+id/phonefield"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="Phone"
+        android:inputType="phone"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/namefield" />
+
+    <Button
+        android:id="@+id/addcontactbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:onClick="addContact"
+        android:text="Add"
+        app:layout_constraintStart_toEndOf="@+id/phonefield"
+        app:layout_constraintTop_toBottomOf="@+id/namefield" />
+
+    <Button
+        android:id="@+id/clearbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:onClick="clearAll"
+        android:text="Clear All"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contactlistview" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

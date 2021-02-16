@@ -27,8 +27,12 @@
                 <action android:name="com.assignment1.MY_INTENT" />
             </intent-filter>
         </receiver>
-
         <service android:name=".TimeService" />
+        <provider
+            android:authorities="com.example.assignment1.contacts"
+            android:name=".ContactContentProvider"
+            android:enabled="true"
+            android:exported="true"/>
     </application>
 
 </manifest>
