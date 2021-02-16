@@ -3,11 +3,14 @@ package com.example.assignment1;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.Calendar;
 
-public class TimeReceiver extends BroadcastReceiver {
+public class MyReceiver  extends BroadcastReceiver {
+    private static String LOG_TAG = "Broadcast Receiver";
+
     @Override
     public void onReceive(Context context, Intent intent) {
         Calendar calendar = Calendar.getInstance();
@@ -18,7 +21,9 @@ public class TimeReceiver extends BroadcastReceiver {
         String formattedTime = String.format("%d:%02d:%02d", hours, minutes,seconds);
         time.append(formattedTime);
         time.append(" - ");
-        time.append("message received from broadcast");
+        time.append("received message ");
+        time.append(intent.getAction());
         Toast.makeText(context, time.toString(), Toast.LENGTH_LONG).show();
+        Log.v(LOG_TAG, "Received Broadcast");
     }
 }

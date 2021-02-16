@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -28,7 +29,9 @@ public class MainActivity extends AppCompatActivity {
         mainText.setText("App was opened at " + new Date());
         Button goToServiceButton = (Button) findViewById(R.id.servicebutton);
         Button broadcastButton = (Button) findViewById(R.id.broadcastbutton);
-
+        MyReceiver receiver = new MyReceiver();
+        //Intent intent = new Intent("com.assignment1.MY_INTENT");
+        registerReceiver(receiver, new IntentFilter("com.assignment1.MY_INTENT"));
         goToServiceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
