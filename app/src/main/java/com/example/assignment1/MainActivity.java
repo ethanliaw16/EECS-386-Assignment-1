@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Context context = getApplicationContext();
+        Context context = getBaseContext();
         Toast toast = Toast.makeText(context, "The toast on startup", Toast.LENGTH_SHORT);
         toast.show();
         super.onCreate(savedInstanceState);
@@ -27,10 +27,20 @@ public class MainActivity extends AppCompatActivity {
         TextView mainText = findViewById(R.id.maintext);
         mainText.setText("App was opened at " + new Date());
         Button goToServiceButton = (Button) findViewById(R.id.servicebutton);
+        Button broadcastButton = (Button) findViewById(R.id.broadcastbutton);
+
         goToServiceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ServiceActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        broadcastButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, BroadcastActivity.class);
                 startActivity(intent);
             }
         });
