@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 public class ServiceActivity extends AppCompatActivity {
     TimeService timeService;
     boolean timeServiceBound = false;
+    Handler mHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +29,13 @@ public class ServiceActivity extends AppCompatActivity {
         Button getMessageButton = (Button) findViewById(R.id.getmessagebutton);
         Button stopServiceButton = (Button) findViewById(R.id.stopservicebutton);
         Button startServiceButton = (Button) findViewById(R.id.startservicebutton);
+        mHandler = new Handler();
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
 
+            }
+        });
         getMessageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
