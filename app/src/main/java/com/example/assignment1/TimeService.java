@@ -48,20 +48,17 @@ public class TimeService extends Service {
             @Override
             public void run() {
                 int i = 10;
-
+                /*
                 while (true){
 
-                    new Handler(Looper.getMainLooper()).post(new Runnable() {
-                        @Override
-                        public void run() {
-                            Calendar calendar = Calendar.getInstance();
-                            StringBuilder time = new StringBuilder();
-                            int hours = calendar.get(Calendar.HOUR_OF_DAY);
-                            int minutes = calendar.get(Calendar.MINUTE);
-                            String formattedTime = String.format("%d:%02d", hours, minutes);
-                            time.append(formattedTime);
-                            Toast.makeText(TimeService.this,"Time reported from service: " + time.toString(), Toast.LENGTH_SHORT).show();
-                        }
+                    new Handler(Looper.getMainLooper()).post(() -> {
+                        Calendar calendar = Calendar.getInstance();
+                        StringBuilder time = new StringBuilder();
+                        int hours = calendar.get(Calendar.HOUR_OF_DAY);
+                        int minutes = calendar.get(Calendar.MINUTE);
+                        String formattedTime = String.format("%d:%02d", hours, minutes);
+                        time.append(formattedTime);
+                        Toast.makeText(TimeService.this,"Time reported from service: " + time.toString(), Toast.LENGTH_SHORT).show();
                     });
 
                     try {
@@ -72,6 +69,14 @@ public class TimeService extends Service {
                         i--;
                     }
                 }
+                */
+                Calendar calendar = Calendar.getInstance();
+                StringBuilder time = new StringBuilder();
+                int hours = calendar.get(Calendar.HOUR_OF_DAY);
+                int minutes = calendar.get(Calendar.MINUTE);
+                String formattedTime = String.format("%d:%02d", hours, minutes);
+                time.append(formattedTime);
+                Toast.makeText(TimeService.this,"Time reported from service: " + time.toString(), Toast.LENGTH_SHORT).show();
             }
         })
         ;
@@ -92,7 +97,6 @@ public class TimeService extends Service {
 
     @Override
     public void onDestroy() {
-        mHandlerThread.stop();
         super.onDestroy();
         Log.v(LOG_TAG, "in onDestroy");
     }
