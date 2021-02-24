@@ -3,8 +3,12 @@ package com.example.assignment1;
 import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.IBinder;
+import android.os.Looper;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.time.LocalDateTime;
 import java.util.Calendar;
@@ -15,6 +19,8 @@ import androidx.annotation.Nullable;
 public class TimeService extends Service {
     private static String LOG_TAG = "BoundService";
     private IBinder timeBinder = new TimeBinder();
+    private HandlerThread mHandlerThread;
+    private Handler mHandler;
 
     @Nullable
     @Override
@@ -26,6 +32,43 @@ public class TimeService extends Service {
     @Override
     public void onCreate(){
         super.onCreate();
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        mHandlerThread = new HandlerThread("LocalServiceThread");
+        mHandlerThread.start();
+
+        mHandler = new Handler(mHandlerThread.getLooper());
+
+
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                int i = 10;
+
+                while (i > 0){
+
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(TimeService.this,"service " + System.currentTimeMillis(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }finally {
+                        i--;
+                    }
+                }
+            }
+        })
+        ;
+
+        return super.onStartCommand(intent, flags, startId);
     }
 
     @Override
