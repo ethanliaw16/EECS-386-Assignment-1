@@ -52,7 +52,13 @@ public class TimeService extends Service {
                     new Handler(Looper.getMainLooper()).post(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(TimeService.this,"service " + System.currentTimeMillis(), Toast.LENGTH_SHORT).show();
+                            Calendar calendar = Calendar.getInstance();
+                            StringBuilder time = new StringBuilder();
+                            int hours = calendar.get(Calendar.HOUR_OF_DAY);
+                            int minutes = calendar.get(Calendar.MINUTE);
+                            String formattedTime = String.format("%d:%02d", hours, minutes);
+                            time.append(formattedTime);
+                            Toast.makeText(TimeService.this,"Time reported from service: " + time.toString(), Toast.LENGTH_SHORT).show();
                         }
                     });
 
