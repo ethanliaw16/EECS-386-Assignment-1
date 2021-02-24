@@ -20,6 +20,8 @@ public class ServiceActivity extends AppCompatActivity {
     TimeService timeService;
     boolean timeServiceBound = false;
     Handler mHandler;
+    private Runnable mRunnable;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,12 +32,15 @@ public class ServiceActivity extends AppCompatActivity {
         Button stopServiceButton = (Button) findViewById(R.id.stopservicebutton);
         Button startServiceButton = (Button) findViewById(R.id.startservicebutton);
         mHandler = new Handler();
-        mHandler.post(new Runnable() {
+        mRunnable = new Runnable() {
             @Override
             public void run() {
-
+                if(timeServiceBound){
+                    timestampText.setText("Time reported from service: " + timeService.getTime());
+                    mHandler.postDelayed(mRunnable,10000);
+                }
             }
-        });
+        };
         getMessageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,6 +65,7 @@ public class ServiceActivity extends AppCompatActivity {
                 }
                 Intent intent = new Intent(ServiceActivity.this,
                         TimeService.class);
+                mHandler.removeCallbacks(mRunnable);
                 stopService(intent);
                 Toast stopServiceToast = Toast.makeText(serviceActivityContext, "Service Stopped", Toast.LENGTH_SHORT);
                 stopServiceToast.show();

@@ -35,6 +35,7 @@ public class TimeService extends Service {
         super.onCreate();
     }
 
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
@@ -46,29 +47,14 @@ public class TimeService extends Service {
         mRunnable = new Runnable() {
             @Override
             public void run() {
-                int i = 10;
-
-                while (true){
-
-                    new Handler(Looper.getMainLooper()).post(() -> {
-                        Calendar calendar = Calendar.getInstance();
-                        StringBuilder time = new StringBuilder();
-                        int hours = calendar.get(Calendar.HOUR_OF_DAY);
-                        int minutes = calendar.get(Calendar.MINUTE);
-                        String formattedTime = String.format("%d:%02d", hours, minutes);
-                        time.append(formattedTime);
-                        Toast.makeText(TimeService.this,"Time reported from service: " + time.toString(), Toast.LENGTH_SHORT).show();
-                    });
-
-                    try {
-                        Thread.sleep(10000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }finally {
-                        i--;
-                    }
-                }
-
+                Calendar calendar = Calendar.getInstance();
+                StringBuilder time = new StringBuilder();
+                int hours = calendar.get(Calendar.HOUR_OF_DAY);
+                int minutes = calendar.get(Calendar.MINUTE);
+                String formattedTime = String.format("%d:%02d", hours, minutes);
+                time.append(formattedTime);
+                Toast.makeText(TimeService.this,"Time reported from service: " + time.toString(), Toast.LENGTH_SHORT).show();
+                mHandler.postDelayed(mRunnable,5000);
             }
         };
         mHandler.post(mRunnable);
