@@ -21,6 +21,7 @@ public class TimeService extends Service {
     private IBinder timeBinder = new TimeBinder();
     private HandlerThread mHandlerThread;
     private Handler mHandler;
+    private boolean stopInvoked = false;
 
     @Nullable
     @Override
@@ -37,6 +38,7 @@ public class TimeService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        /*
         mHandlerThread = new HandlerThread("LocalServiceThread");
         mHandlerThread.start();
 
@@ -73,8 +75,28 @@ public class TimeService extends Service {
                 }
             }
         })
-        ;
+        ;*/
+        while (!stopInvoked) {
 
+            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                @Override
+                public void run() {
+                    Calendar calendar = Calendar.getInstance();
+                    StringBuilder time = new StringBuilder();
+                    int hours = calendar.get(Calendar.HOUR_OF_DAY);
+                    int minutes = calendar.get(Calendar.MINUTE);
+                    String formattedTime = String.format("%d:%02d", hours, minutes);
+                    time.append(formattedTime);
+                    Toast.makeText(TimeService.this, "Time reported from service: " + time.toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -91,6 +113,7 @@ public class TimeService extends Service {
 
     @Override
     public void onDestroy() {
+        stopInvoked = true;
         super.onDestroy();
         Log.v(LOG_TAG, "in onDestroy");
     }
