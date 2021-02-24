@@ -92,7 +92,7 @@ public class TimeService extends Service {
 
     @Override
     public void onDestroy() {
-        mHandlerThread.quit();
+        mHandlerThread.stop();
         super.onDestroy();
         Log.v(LOG_TAG, "in onDestroy");
     }
