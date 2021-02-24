@@ -47,7 +47,7 @@ public class TimeService extends Service {
             public void run() {
                 int i = 10;
 
-                while (i > 0){
+                while (true){
 
                     new Handler(Looper.getMainLooper()).post(new Runnable() {
                         @Override
@@ -57,7 +57,7 @@ public class TimeService extends Service {
                     });
 
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(10000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }finally {

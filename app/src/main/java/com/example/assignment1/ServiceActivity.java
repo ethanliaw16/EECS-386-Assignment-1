@@ -72,6 +72,7 @@ public class ServiceActivity extends AppCompatActivity {
                 else{
                     toastMessage = "Service is Already Running";
                 }
+
                 startServiceToast = Toast.makeText(serviceActivityContext, toastMessage, Toast.LENGTH_SHORT);
                 startServiceToast.show();
             }
