@@ -34,9 +34,11 @@ public class ServiceActivity extends AppCompatActivity {
                 if (timeServiceBound) {
                     String newText = "Message from service: " + timeService.getTime();
                     timestampText.setText(newText);
+                    Toast.makeText(serviceActivityContext, "Recieved New Message", Toast.LENGTH_SHORT).show();
                 }
-                Toast messageReceivedToast = Toast.makeText(serviceActivityContext, "Recieved New Message", Toast.LENGTH_SHORT);
-                messageReceivedToast.show();
+                else{
+                    Toast.makeText(serviceActivityContext, "No messages - the service was stopped", Toast.LENGTH_SHORT).show();
+                }
             }
 
         });
@@ -95,6 +97,8 @@ public class ServiceActivity extends AppCompatActivity {
             unbindService(timeServiceConnection);
             timeServiceBound = false;
         }
+        Intent intent = new Intent(this, TimeService.class);
+        stopService(intent);
     }
 
 

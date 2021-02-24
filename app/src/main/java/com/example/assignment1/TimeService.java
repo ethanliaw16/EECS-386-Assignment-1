@@ -34,6 +34,7 @@ public class TimeService extends Service {
         super.onCreate();
     }
 
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         mHandlerThread = new HandlerThread("LocalServiceThread");
